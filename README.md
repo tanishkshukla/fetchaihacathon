@@ -24,8 +24,8 @@ Most AI agents in Web3 stop at conversation: they quote prices or recite documen
 
 | Agent Role | Agent Name | Agentverse Address & Profile |
 | :--- | :--- | :--- |
-| **Primary Orchestrator** | **YieldSentinel AI** | [`agent1q2c8s3r6zvtunmx84ncxlrwdv8txjxwwz6s7shu75wexnqsr590uwefxkm6`](https://agentverse.ai/agents/agent1q2c8s3r6zvtunmx84ncxlrwdv8txjxwwz6s7shu75wexnqsr590uwefxkm6) |
-| **Worker Agent** | **DeFi Risk Analyst** | [`agent1qgqd8w4gtl2sd0p3fxpusycsu69kehnf2l954qec78uctvn69h5j2ydlmqf`](https://agentverse.ai/agents/agent1qgqd8w4gtl2sd0p3fxpusycsu69kehnf2l954qec78uctvn69h5j2ydlmqf) |
+| **Primary Orchestrator** | **YieldSentinel AI** | [`agent1q2u2g04zqnfndm4ap4d4y9d9twfkqnnnvd85uhf0fxq9j2zcmhvmx96p90d`](https://agentverse.ai/agents/agent1q2u2g04zqnfndm4ap4d4y9d9twfkqnnnvd85uhf0fxq9j2zcmhvmx96p90d) |
+| **Worker Agent** | **DeFi Risk Analyst** | [`agent1qfd290sfdzvxt3tsqpgd7dv38u2glu34fmg5vt6n56ltwnaf7420j28e25y`](https://agentverse.ai/agents/agent1qfd290sfdzvxt3tsqpgd7dv38u2glu34fmg5vt6n56ltwnaf7420j28e25y) |
 
 Both agents are published to the Fetch.ai **Almanac Registry** and discoverable directly on **[ASI:One](https://asi1.ai/)**.
 
@@ -242,7 +242,7 @@ Narration: Staking Position Successfully Allocated!
 
 ## 🏆 Hackathon Deliverables Checklist
 
-- [x] **Agent Registered on Agentverse**: `agent1q2c8s3r6zvtunmx84ncxlrwdv8txjxwwz6s7shu75wexnqsr590uwefxkm6`
+- [x] **Agent Registered on Agentverse**: `agent1q2u2g04zqnfndm4ap4d4y9d9twfkqnnnvd85uhf0fxq9j2zcmhvmx96p90d`
 - [x] **Agent Chat Protocol (ACP)**: Full implementation with `ChatMessage`, `ChatAcknowledgement`, `TextContent`, and `MetadataContent`.
 - [x] **ASI:One Discoverable**: Published to Fetch.ai Almanac registry.
 - [x] **ASI:One Interactive Cards**: Complete 4-card sequence (Carousel, Detail, Form, Review).
