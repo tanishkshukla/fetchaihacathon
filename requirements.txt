@@ -1,0 +1,5 @@
+uagents>=0.14.0
+uagents-core>=0.4.9
+requests>=2.31.0
+python-dotenv>=1.0.0
+pydantic>=2.5.0

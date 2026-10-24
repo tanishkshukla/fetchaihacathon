@@ -1,0 +1,20 @@
+# Environment variables
+.env
+*.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+dist/
+build/
+*.egg-info/
+
+# Logs & temp
+*.log
+.system_generated/
+agent1*_data.json
+
