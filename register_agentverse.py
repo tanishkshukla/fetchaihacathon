@@ -53,7 +53,7 @@ YieldSentinel AI is an autonomous, agentic risk guardian built for the Fetch.ai 
 try:
     success = register_chat_agent(
         name="YieldSentinel AI",
-        endpoint="https://agentverse.ai/v1/proxy",  # Agentverse proxy
+        endpoint="http://localhost:8000/submit",
         active=True,
         credentials=credentials,
         description="Autonomous DeFi & Staking Risk Guardian with interactive cards for yield optimization and validator monitoring.",

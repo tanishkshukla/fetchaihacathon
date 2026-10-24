@@ -1,6 +1,10 @@
-# Environment variables
+# Secrets & Environment variables
 .env
-*.env.local
+.env*
+!.env.example
+**/.env
+**/.env*
+!**/.env.example
 
 # Python
 __pycache__/
@@ -13,8 +17,17 @@ dist/
 build/
 *.egg-info/
 
+# Vector Store local cache
+**/chroma_db/
+chroma_db/
+
 # Logs & temp
 *.log
 .system_generated/
 agent1*_data.json
 
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

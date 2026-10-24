@@ -1,0 +1,190 @@
+================================================================================
+CAMPUSMITRA INSTITUTE OF TECHNOLOGY & SCIENCE (CITS) - CAMPUS DIRECTORY & HANDBOOK
+================================================================================
+Academic Year 2026-2027
+Official Student & Faculty Reference Guide
+
+--------------------------------------------------------------------------------
+1. CAMPUS INFRASTRUCTURE, BUILDINGS & CLASSROOMS
+--------------------------------------------------------------------------------
+The campus is divided into four primary academic and research complexes:
+
+1.1 Alan Turing Computer Science Block (Code: CS-BLOCK)
+- Location: West Campus Promenade
+- Total Floors: 4 Floors (Ground + 3)
+- Ground Floor:
+  * CS-101: 1st Year CSE Classroom (Capacity: 75)
+  * CS-102: 1st Year CSE-Artificial Intelligence Section (Capacity: 75)
+  * Programming Laboratory 1: 60 High-performance Ubuntu Workstations
+  * Campus Central Server & Data Center Room
+- 1st Floor:
+  * CS-201: 2nd Year CSE Section A (Equipped with Smart Interactive Board)
+  * CS-202: 2nd Year CSE Section B (Equipped with Dual Projectors)
+  * Database & Cloud Systems Lab: High-speed Oracle & AWS Cloud Sandbox
+  * Head of Department (HOD) Office & Departmental Meeting Chamber
+- 2nd Floor:
+  * CS-301: 3rd Year CSE Section A Lecture Hall
+  * CS-302: 3rd Year CSE Section B Lecture Hall
+  * AI & Machine Learning Research Center: Equipped with NVIDIA RTX 4090 GPUs
+  * Faculty Cabins: Room CS-301 to CS-315
+- 3rd Floor:
+  * CS-401: 4th Year CSE Capstone & Project Hall
+  * CS-402: 4th Year Research Seminar Room
+  * Internet of Things (IoT) & Embedded Robotics Laboratory
+  * Departmental Mini-Auditorium (Capacity: 180 seats)
+
+1.2 Ramanujan Academic Block (Code: AB-MAIN)
+- Location: Central Quadrangle
+- Total Floors: 3 Floors (Ground + 2)
+- Ground Floor:
+  * LT-1 (Lecture Theater 1): Tiered gallery hall for 1st Year B.Tech Foundation
+  * LT-2 (Lecture Theater 2): Multi-purpose Academic Lecture Hall
+  * Student Academic Affairs & Administration Office
+  * Accounts & Fee Clearance Desk
+- 1st Floor:
+  * Room 201: Foundation Coursework Lecture Hall
+  * Room 202: Applied Engineering & CAD Drawing Classroom
+  * Engineering Mechanics & Physics Laboratory
+- 2nd Floor:
+  * Room 301: Applied Mathematics Seminar Hall
+  * Room 302: Humanities & Professional Communication Center
+  * Office of the Dean of Academics
+
+1.3 Vikram Sarabhai Electronics & Tech Block (Code: ECE-BLOCK)
+- Location: East Wing near Tech Garden
+- Total Floors: 3 Floors (Ground + 2)
+- Ground Floor:
+  * EC-101: 1st Year ECE Lecture Hall
+  * Analog Electronics & Circuit Design Laboratory
+  * Digital Signal Processing (DSP) Laboratory
+- 1st Floor:
+  * EC-201: 2nd Year ECE Lecture Hall
+  * EC-202: Electronics Instrumentation Classroom
+  * VLSI Semiconductor Design Center (Cadence & Synopsys Toolsets)
+- 2nd Floor:
+  * EC-301: 3rd Year ECE Lecture Hall
+  * EC-401: Final Year ECE Advanced Wireless Communications Hall
+  * Microwave, Antenna & Optical Fiber Lab
+
+1.4 Central Knowledge & Library Complex (Code: CENTRAL-LIB)
+- Location: North Campus
+- Total Floors: 2 Floors
+- Ground Floor:
+  * Circulation & Book Issue Desk (Open 08:30 AM to 08:00 PM)
+  * General Book Stacks (Over 85,000 engineering and reference volumes)
+  * Current Periodicals, International Journals & National Newspaper Section
+  * Photocopy, Document Binding & Digital Print Shop
+- 1st Floor:
+  * Air-Conditioned Silent Reading Hall (Capacity: 220 students, Open 24/7 during exams)
+  * Digital Research Lab (60 High-speed Terminals with IEEE Xplore, ScienceDirect access)
+  * Group Discussion Rooms A, B, and C (Available by prior reservation)
+
+--------------------------------------------------------------------------------
+2. FACULTY DIRECTORY, SUBJECTS & CABIN LOCATIONS
+--------------------------------------------------------------------------------
+2.1 Dr. Rajesh Sharma
+- Designation: Professor & Head of Department (HOD)
+- Department: Computer Science & Engineering
+- Specialization: Advanced Algorithms, Data Structures, Graph Theory
+- Subjects Taught:
+  * Data Structures & Algorithms (2nd Year CSE)
+  * Design & Analysis of Algorithms (3rd Year CSE)
+  * Introduction to Programming in C (1st Year Foundation)
+- Cabin Location: Turing Block, 1st Floor, Cabin CS-105
+- Office Visiting Hours: Monday & Wednesday, 02:00 PM - 04:00 PM
+- Email: rajesh.sharma@campus.edu.in
+
+2.2 Prof. Ananya Verma
+- Designation: Associate Professor
+- Department: Computer Science & Engineering
+- Specialization: Operating Systems, Linux Kernel internals, Distributed Computing
+- Subjects Taught:
+  * Operating Systems (3rd Year CSE)
+  * Computer Organization & Architecture (2nd Year CSE)
+  * Object Oriented Programming using Java (2nd Year CSE)
+- Cabin Location: Turing Block, 2nd Floor, Cabin CS-204
+- Office Visiting Hours: Tuesday & Thursday, 11:00 AM - 01:00 PM
+- Email: ananya.verma@campus.edu.in
+
+2.3 Dr. Amit Gupta
+- Designation: Professor
+- Department: Computer Science & Engineering
+- Specialization: Relational & NoSQL Databases, Cloud Infrastructure, Big Data
+- Subjects Taught:
+  * Database Management Systems / DBMS (3rd Year CSE)
+  * Distributed Systems & Cloud Computing (4th Year CSE)
+- Cabin Location: Turing Block, 2nd Floor, Cabin CS-210
+- Office Visiting Hours: Monday & Friday, 03:00 PM - 05:00 PM
+- Email: amit.gupta@campus.edu.in
+
+2.4 Prof. Neha Kapoor
+- Designation: Assistant Professor
+- Department: Artificial Intelligence & Data Science
+- Specialization: Machine Learning, Deep Neural Networks, Natural Language Processing
+- Subjects Taught:
+  * Machine Learning (3rd Year CSE)
+  * Deep Learning & Generative AI (4th Year CSE)
+  * Natural Language Processing (4th Year CSE Elective)
+- Cabin Location: Turing Block, 3rd Floor, Cabin CS-308
+- Office Visiting Hours: Wednesday & Thursday, 01:30 PM - 03:30 PM
+- Email: neha.kapoor@campus.edu.in
+
+2.5 Dr. S. K. Iyer
+- Designation: Professor
+- Department: Applied Sciences & Mathematics
+- Specialization: Linear Algebra, Calculus, Discrete Mathematical Structures
+- Subjects Taught:
+  * Engineering Mathematics-I & II (1st Year Foundation)
+  * Discrete Mathematics (2nd Year CSE)
+- Cabin Location: Ramanujan Block, 2nd Floor, Cabin RM-201
+- Office Visiting Hours: Monday, Tuesday & Friday, 12:00 PM - 01:00 PM
+- Email: sk.iyer@campus.edu.in
+
+2.6 Dr. P. V. Reddy
+- Designation: Associate Professor
+- Department: Electronics & Communication Engineering
+- Specialization: Digital Signal Processing, Embedded Systems, FPGA Architectures
+- Subjects Taught:
+  * Basic Electronics (1st Year B.Tech)
+  * Digital Logic & Computer Design (2nd Year CSE)
+  * Digital Signal Processing / DSP (3rd Year ECE)
+- Cabin Location: Sarabhai ECE Block, 1st Floor, Cabin EC-108
+- Office Visiting Hours: Tuesday & Thursday, 02:00 PM - 04:00 PM
+- Email: pv.reddy@campus.edu.in
+
+--------------------------------------------------------------------------------
+3. ACADEMIC SCHEDULES & TIMETABLE OVERVIEW (ALL 4 YEARS)
+--------------------------------------------------------------------------------
+Daily Schedule Structure:
+- Slot 1: 09:00 AM - 10:00 AM
+- Slot 2: 10:00 AM - 11:00 AM
+- Short Break: 11:00 AM - 11:15 AM
+- Slot 3 / Lab: 11:15 AM - 01:15 PM
+- Lunch Break: 01:15 PM - 02:00 PM
+- Slot 4: 02:00 PM - 03:00 PM
+- Slot 5: 03:00 PM - 04:00 PM
+- Extra-Curricular / Activity Hour: 04:00 PM - 05:00 PM
+
+Summary of Primary Classrooms:
+- 1st Year (B.Tech Foundation): Ramanujan Block, Lecture Theater 1 (LT-1)
+- 2nd Year (CSE Core): Turing Block, Room CS-201 (1st Floor)
+- 3rd Year (CSE Junior): Turing Block, Room CS-301 (2nd Floor)
+- 4th Year (CSE Senior): Turing Block, Room CS-401 (3rd Floor)
+
+--------------------------------------------------------------------------------
+4. ACADEMIC POLICIES, ATTENDANCE & EXAMINATION GUIDELINES
+--------------------------------------------------------------------------------
+4.1 Attendance Minimum Requirement:
+- Mandatory minimum attendance: 75% in every individual theory and practical subject.
+- Condonation: Up to 10% condonation (minimum 65%) permitted solely on medical grounds with submission of a Government Medical Officer certificate within 5 days of absence.
+- Students with attendance below 65% are strictly detained from appearing in End-Semester Examinations.
+
+4.2 Evaluation Scheme:
+- Internal Assessment: 40% weightage (Continuous Assessment Tests, Mid-Term Exam, Quizzes, Lab Assignments).
+- End-Semester University Examination: 60% weightage.
+- Passing Criteria: Minimum 40% in End-Semester Examination AND overall aggregate of 45% in internal + external evaluation.
+
+4.3 Campus Wi-Fi & Digital Resources:
+- SSID: `CITS-Student-5G` (Authentication via Student Roll Number and Portal Password).
+- VPN Access: Available for accessing IEEE Xplore and Springer journals from off-campus hostels via `vpn.campus.edu.in`.
+================================================================================

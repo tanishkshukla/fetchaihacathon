@@ -1,256 +1,187 @@
-# YieldSentinel AI — Autonomous DeFi & Staking Risk Guardian
-### Fetch-A-Thon 3.0 / ASI:One Agent Challenge: *From Intent to Action*
+# 🎓 CampusMitra AI — Autonomous Indian Campus Concierge
+### Fetch.ai / ASI:One Agent Challenge (Fetch-A-Thon 3.0) — *From Intent to Action*
 
-[![Fetch.ai](https://img.shields.io/badge/Fetch.ai-uAgents-blue.svg)](https://fetch.ai/)
-[![Agentverse](https://img.shields.io/badge/Agentverse-Registered-success.svg)](https://agentverse.ai/)
-[![ASI:One](https://img.shields.io/badge/ASI:One-Discoverable-purple.svg)](https://asi1.ai/)
-[![Protocol](https://img.shields.io/badge/Protocol-ACP%20(Agent%20Chat%20Protocol)-orange.svg)](https://innovationlab.fetch.ai/resources/docs/agent-communication/agent-chat-protocol)
-[![Cards](https://img.shields.io/badge/ASI%20Cards-Carousel%20%7C%20Detail%20%7C%20Form%20%7C%20Review-green.svg)](https://innovationlab.fetch.ai/resources/docs/interactive-cards/asi-interactive-cards)
-
----
-
-## 🎯 Executive Summary & Problem Statement
-
-Most AI agents in Web3 stop at conversation: they quote prices or recite documentation, but leave users stranded when it's time to take action. Meanwhile, DeFi and Proof-of-Stake investors lose significant yields and risk capital due to:
-1. **Fragmented Yields**: Comparing validator yields across Cosmos/Fetch.ai, Ethereum, and major Layer-2s is tedious and manual.
-2. **Hidden Slashing & Protocol Risks**: Users delegate to validators without knowing their slashing history or smart contract audit status.
-3. **Lack of Automated Compounding**: Manual restaking incurs friction and forgone compound interest.
-
-**YieldSentinel AI** turns **intent into executable action**. Directly inside an [ASI:One](https://asi1.ai/) chat conversation, YieldSentinel analyzes real-time yields, performs multi-agent security audits, drives guided user decisions via **ASI Interactive Cards** (Carousels, Details, Forms, and Reviews), and locks in verified staking allocations with automated risk monitoring.
+[![Fetch.ai](https://img.shields.io/badge/Fetch.ai-uAgents_v0.26-blue.svg)](https://fetch.ai/)
+[![Agentverse](https://img.shields.io/badge/Agentverse-Registered_%26_Active-success.svg)](https://agentverse.ai/)
+[![ASI:One](https://img.shields.io/badge/ASI:One-Interactive_Cards_v1-indigo.svg)](https://asi1.ai/)
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/Frontend-React_+_Tailwind_CSS-38bdf8.svg)](https://react.dev/)
+[![ChromaDB](https://img.shields.io/badge/Vector_DB-ChromaDB_RAG-orange.svg)](https://www.trychroma.com/)
 
 ---
 
-## 🌐 Live Agent Profiles on Agentverse
+## 🌟 Executive Summary
 
-| Agent Role | Agent Name | Agentverse Address & Profile |
-| :--- | :--- | :--- |
-| **Primary Orchestrator** | **YieldSentinel AI** | [`agent1q2u2g04zqnfndm4ap4d4y9d9twfkqnnnvd85uhf0fxq9j2zcmhvmx96p90d`](https://agentverse.ai/agents/agent1q2u2g04zqnfndm4ap4d4y9d9twfkqnnnvd85uhf0fxq9j2zcmhvmx96p90d) |
-| **Worker Agent** | **DeFi Risk Analyst** | [`agent1qfd290sfdzvxt3tsqpgd7dv38u2glu34fmg5vt6n56ltwnaf7420j28e25y`](https://agentverse.ai/agents/agent1qfd290sfdzvxt3tsqpgd7dv38u2glu34fmg5vt6n56ltwnaf7420j28e25y) |
+**CampusMitra AI** is an autonomous, multi-agent campus concierge designed specifically for Indian university and college ecosystems (Roorkee Institute of Technology / RIT Edition). Built natively on **Fetch.ai's Agent Chat Protocol (ACP)** and the **ASI:One Interactive Cards Protocol**, CampusMitra AI solves daily student and faculty friction by seamlessly handling:
 
-Both agents are published to the Fetch.ai **Almanac Registry** and discoverable directly on **[ASI:One](https://asi1.ai/)**.
+1. **Official Class Timetables (All 4 Years)**: Complete Monday–Saturday routines for 1st Year (Room B-001), 2nd Year (Room C-202), 3rd Year (Room C-212), and 4th Year (Room D-202).
+2. **Boys Hostel Mess Food (Monday to Sunday)**: 4 meals daily (Breakfast, Lunch, Evening Tea/Snacks, Dinner) with real menu items (Aloo Paratha, Shahi Paneer, Chole Bhature, Kheer, Jalebi, Ice Cream).
+3. **Campus Canteen Menu**: Burgers, Full Plate Momos (8 pcs), Chilled Cold Drinks, Hot/Cold Coffee, Kadak Chai, French Fries, and Maggi with student pricing.
+4. **Classroom Navigation & Floor Maps**: Academic Block B, Block C, Block D, and Central Amenities Complex.
+5. **Faculty Directory & Cabins**: HOD CSE, Professors, subjects taught, cabin numbers, and office visiting hours.
+6. **Academic Handbook RAG**: Semantic vector retrieval powered by **ChromaDB** indexing official college regulations, 75% attendance policy, and exam rules.
+7. **Zero-Friction UI**: Full support for **ASI Interactive Cards Protocol v1** (`carousel`, `detail`, `form`, `review`) inside ASI:One and a local **React + Tailwind CSS** dashboard.
 
 ---
 
-## 🏗️ Architecture & Multi-Agent System
+## 🌐 Live Agent on Agentverse & ASI:One
+
+| Attribute | Details |
+| :--- | :--- |
+| **Agent Name** | `CampusMitra AI` / `campus_mitra_cloud` |
+| **Agent Address** | [`agent1qt6msz8tyzg629x2uhvjn025sd27erneyl4427fpgdxqq74ycryquewctvc`](https://agentverse.ai/agents/agent1qt6msz8tyzg629x2uhvjn025sd27erneyl4427fpgdxqq74ycryquewctvc) |
+| **Agentverse Profile** | [https://agentverse.ai/agents/agent1qt6msz8tyzg629x2uhvjn025sd27erneyl4427fpgdxqq74ycryquewctvc](https://agentverse.ai/agents/agent1qt6msz8tyzg629x2uhvjn025sd27erneyl4427fpgdxqq74ycryquewctvc) |
+| **ASI:One Direct Interaction** | [https://asi1.ai/](https://asi1.ai/) |
+| **Status** | **Active & Discoverable** (Agent Chat Protocol:0.3.0) |
+
+---
+
+## 🏗️ Architecture & Technology Stack
 
 ```mermaid
 flowchart TD
-    User([User on ASI:One]) <-->|ACP Messages & Interactive Cards| Sentinel[YieldSentinel Orchestrator Agent\nagent1q2c8...km6]
+    User([Student / Faculty on ASI:One]) <-->|ACP Messages & Interactive Cards| uAgent[Fetch.ai uAgent Cloud Agent\nhosted_agent.py]
+    WebUser([Student on Campus Web Portal]) <-->|REST API / WebSocket| FastAPI[FastAPI Backend\nhttp://127.0.0.1:8080]
 
-    subgraph Agentverse Ecosystem
-        Sentinel <-->|Almanac Discovery| AV[Agentverse Almanac Registry]
-        Sentinel <-->|Risk Assessment Protocol| RiskAgent[DeFi Risk Analyst Worker\nagent1qgqd...mqf]
+    subgraph Multi-Agent Orchestrator
+        Orchestrator[Campus Multi-Agent Router]
+        TT_Agent[Timetable Sub-Agent\n1st-4th Year Schedules]
+        Mess_Agent[Mess & Canteen Sub-Agent\nFood Menus & Orders]
+        Nav_Agent[Navigation Sub-Agent\nBlocks B, C, D & Rooms]
+        Fac_Agent[Faculty Sub-Agent\nCabins & Visiting Hours]
+        RAG_Agent[ChromaDB RAG Agent\nCollege Regulations PDF]
     end
 
-    subgraph ASI:One Interactive Drawer UI
-        C1[1. Carousel Card: Curated Vaults] --> C2[2. Detail Card: Risk Profile & Strategy]
-        C2 --> C3[3. Form Card: Position Configuration]
-        C3 --> C4[4. Review Card: Executive Confirmation]
+    uAgent --> Orchestrator
+    FastAPI --> Orchestrator
+
+    Orchestrator --> TT_Agent
+    Orchestrator --> Mess_Agent
+    Orchestrator --> Nav_Agent
+    Orchestrator --> Fac_Agent
+    Orchestrator --> RAG_Agent
+
+    RAG_Agent <--> Chroma[(Persistent ChromaDB\n19 Chunks Ingested)]
+
+    subgraph ASI:One Interactive Cards Protocol
+        C1[Main Menu Carousel]
+        C2[Mess Detail Card + Day Switcher]
+        C3[Canteen Category Detail]
+        C4[Timetable Routine Detail Card]
+        C5[Building & Room Detail Card]
+        C6[Faculty Profile Card]
     end
 
-    Sentinel --> C1
-    Sentinel --> Action[On-Chain Execution & 24/7 Guardian Monitoring]
+    Orchestrator --> C1
+    Orchestrator --> C2
+    Orchestrator --> C3
+    Orchestrator --> C4
+    Orchestrator --> C5
+    Orchestrator --> C6
 ```
 
 ---
 
-## 🃏 End-to-End Workflow via ASI:One Interactive Cards
-
-YieldSentinel completes the primary user journey entirely inside ASI:One without requiring an external frontend:
-
-### 1. `carousel` Card — Curated Yield & Staking Vaults
-- **User Intent**: *"Find high yield staking with low risk"* or *"Show me staking vaults"*.
-- **Interaction**: Displays interactive cards for verified pools:
-  - **Fetch.ai (ASI Alliance) Native Staking** (Cosmos / 12.8% APY / 21d unbonding)
-  - **Osmosis Superfluid Staking** (Cosmos / 14.5% APY / 14d unbonding)
-  - **Aave V3 USDC Supply Vault** (Arbitrum / 6.4% APY / Instant)
-  - **Lido Liquid Staked ETH** (Ethereum / 3.7% APY / Instant)
-- **Action**: User selects a pool (`action: "select_pool"`).
-
-### 2. `detail` Card — Deep Risk Profile & Strategy Picker
-- **Interaction**: Displays security audits (CertiK, OpenZeppelin, Halborn), total value locked ($345M+), and slashing safeguards.
-- **Sub-Option Radio Selector**: User chooses compounding strategy:
-  - `auto_compound`: Daily automated restaking (+1.4% APY boost).
-  - `liquid_staking`: Retain liquidity with transferable stFET tokens.
-  - `standard`: Direct validator delegation.
-- **Action**: User proceeds to allocation (`action: "configure_position"`).
-
-### 3. `form` Card — Position & Risk Parameters
-- **Interaction**: User inputs:
-  - Deposit amount (e.g. `1,000 FET`)
-  - Delegator wallet address (`fetch1...`)
-  - Automated Risk Guardian trigger (`Strict`, `Moderate`, `Off`).
-- **Action**: User submits form (`action: "submit_position"`).
-
-### 4. `review` Card — Executive Confirmation & Sign-Off
-- **Interaction**: Comprehensive itemized breakdown:
-  - Principal deposit & Effective APY
-  - Projected 1-Year Returns (+142 FET / ~$213 USD)
-  - Risk Guardian Certification (Signed by DeFi Risk Analyst Agent)
-  - Protocol Protection Fee: `0.1 FET`
-- **Action**: User approves via CTA (`action: "confirm_allocation"`).
-- **Outcome**: Verifiable transaction hash generated; 24/7 automated slashing & yield drop monitoring activated.
-
----
-
-## 💰 Monetization Model (Payment Protocol)
-
-YieldSentinel operates a sustainable protocol revenue model:
-1. **Protection Fee**: A flat **0.1 FET** fee per allocated position for continuous validator monitoring and emergency circuit-breaker alerts.
-2. **Performance Fee on Compounding**: A 2.5% share on bonus auto-compounded yields generated above the baseline delegation APY.
-3. **B2B Validator Verification**: Staking validators pay a monthly FET subscription to be audited and featured with verified security badges in the Carousel.
-
----
-
-## 📁 Repository Structure
+## 📂 Project Structure
 
 ```
 fetchaihacathon/
-├── .env.example              # Environment variables template
-├── .gitignore                # Protects secrets & virtualenvs
-├── requirements.txt          # Python dependencies
-├── run_agents.py             # Bureau runner for both agents concurrently
-├── register_agentverse.py    # Auto-registration script for Sentinel Agent
-├── register_risk_agent.py    # Auto-registration script for Risk Analyst Agent
-├── test_client.py            # Automated simulation client testing full ACP cards flow
-├── src/
-│   ├── __init__.py
-│   ├── config.py             # Configuration & environment loaders
-│   ├── cards.py              # ASI:One Interactive Cards schemas (Carousel, Detail, Form, Review)
-│   ├── defillama.py          # Yield data, APY calculation & return projection engine
-│   ├── risk_agent.py         # Secondary Worker Agent (DeFi Risk Analyst)
-│   └── sentinel_agent.py     # Primary Orchestrator Agent (ACP + ASI:One Cards)
-└── README.md
+├── campus_mitra/
+│   ├── backend/
+│   │   ├── agents/               # Multi-agent orchestrator & specialized agents
+│   │   │   ├── orchestrator.py    # LangGraph-style agent routing & card dispatch
+│   │   │   ├── timetable_agent.py # Class timetable resolution
+│   │   │   ├── mess_canteen_agent.py # Mess food & fast food menus
+│   │   │   ├── navigation_agent.py# Room & floor map routing
+│   │   │   ├── faculty_agent.py   # Professor profiles & cabins
+│   │   │   └── rag_agent.py       # ChromaDB vector retrieval
+│   │   ├── cards/
+│   │   │   └── card_builder.py    # ASI:One Interactive Cards (v1 protocol)
+│   │   ├── data/
+│   │   │   ├── campus_data.py     # Complete database (Timetables, Mess, Canteen, Buildings, Faculty)
+│   │   │   └── campus_handbook.pdf# Official college PDF regulations document
+│   │   ├── rag/
+│   │   │   ├── chroma_db/         # Persistent ChromaDB vector storage (19 chunks)
+│   │   │   ├── pdf_extractor.py   # PDF text extraction (pypdf + streams)
+│   │   │   └── vector_store.py    # Embeddings & similarity search
+│   │   ├── main.py                # FastAPI REST API & static server
+│   │   └── uagent_service.py      # Local Fetch.ai uAgent ACP service
+│   ├── frontend/
+│   │   └── index.html             # React 18 + Tailwind CSS 7-tab web app
+│   ├── hosted_agent.py            # Self-contained single-file cloud agent for Agentverse
+│   ├── register_agentverse.py     # Agentverse registration & sync script
+│   ├── run_campus.py              # Master runner (FastAPI + uAgent concurrent)
+│   └── test_campus_client.py      # Automated ACP test client
+├── .env.example                   # Environment configuration template
+├── .gitignore                     # Git ignore rules (secrets & caches protected)
+└── README.md                      # Complete project documentation
 ```
 
 ---
 
-## 🚀 Quickstart & Setup Guide
+## 🚀 Quickstart Guide
 
-### 1. Prerequisites
-- Python 3.10 to 3.14
-- Git
-- Agentverse Account ([agentverse.ai](https://agentverse.ai/))
+### 1. Clone & Set Up Virtual Environment
 
-### 2. Clone and Install
 ```bash
-git clone https://github.com/<your-username>/yieldsentinel-ai.git
-cd yieldsentinel-ai
+git clone https://github.com/<your-username>/fetchaihacathon.git
+cd fetchaihacathon
 
 # Create virtual environment
 python -m venv venv
-
-# Activate virtual environment
-# Windows:
-.\venv\Scripts\activate
-# Linux/macOS:
-source venv/bin/activate
+venv\Scripts\activate   # On Windows
+# source venv/bin/activate  # On Linux/macOS
 
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-### 3. Configure Environment Variables
-Copy `.env.example` to `.env` and insert your credentials:
-```bash
-cp .env.example .env
-```
-In `.env`:
-```ini
-AGENTVERSE_API_KEY=your_agentverse_api_key
-SENTINEL_AGENT_SEED=yield-sentinel-asi-hackathon-2026-seed-alpha
-RISK_AGENT_SEED=defi-risk-analyst-agent-seed-secure-beta
-AGENT_PORT=8000
-RISK_AGENT_PORT=8001
-```
+### 2. Configure Environment Variables
 
-### 4. Register Agents on Agentverse
-Run the automated registration scripts:
+Copy the `.env.example` template:
 ```bash
-python register_agentverse.py
-python register_risk_agent.py
+cp campus_mitra/.env.example campus_mitra/.env
 ```
-Both agents will be verified and marked as active on Agentverse.
+Fill in your `AGENTVERSE_API_KEY` (obtain free from [Agentverse.ai](https://agentverse.ai) -> Profile -> API Keys).
 
-### 5. Run the Multi-Agent System
-```bash
-# Run both Sentinel Orchestrator and Risk Analyst worker together:
-python run_agents.py
-```
+### 3. Launch Local Master Daemon
 
-### 6. Run the End-to-End Automated Test
-In a separate terminal, run the simulated ASI:One user client to verify all 4 Interactive Cards:
 ```bash
-python test_client.py
+python campus_mitra/run_campus.py
 ```
+This concurrently starts:
+- 🌐 **Web Dashboard & REST API**: [http://127.0.0.1:8080](http://127.0.0.1:8080)
+- 🤖 **Local Fetch.ai uAgent (ACP)**: `http://127.0.0.1:8000/submit`
 
 ---
 
-## 🧪 Automated ACP Test Output
+## ☁️ 24/7 Cloud Deployment on Agentverse
 
-```text
-=============================================================
-[RECV - STEP 0] FROM YIELDSENTINEL:
-Narration: Welcome to YieldSentinel AI — your Autonomous DeFi & Staking Risk Guardian...
-CARD TYPE: >>> CAROUSEL <<<
-Card Title: YieldSentinel: Verified Staking & Yield Vaults
-   Items Count: 4
--------------------------------------------------------------
-[USER ACTION] Selecting 'asi_fetch_staking' from Carousel...
+You can deploy CampusMitra AI to run **24/7 without needing a local server**:
 
--------------------------------------------------------------
-[RECV - STEP 1] FROM YIELDSENTINEL:
-Narration: Deep Risk Analysis: Fetch.ai Native Staking (ASI Network)...
-CARD TYPE: >>> DETAIL <<<
-Card Title: Risk Profile: Fetch.ai Native Staking (ASI Network)
-   Summary Rows: 7
--------------------------------------------------------------
-[USER ACTION] Selecting Auto-Compound Strategy and proceeding...
-
--------------------------------------------------------------
-[RECV - STEP 2] FROM YIELDSENTINEL:
-Narration: Configure Staking Position for Fetch.ai Native Staking...
-CARD TYPE: >>> FORM <<<
-Card Title: Configure Allocation: Fetch.ai Native Staking
-   Fields: ['deposit_amount', 'wallet_address', 'guardian_alert']
--------------------------------------------------------------
-[USER ACTION] Submitting Form with 1,000 FET deposit and wallet address...
-
--------------------------------------------------------------
-[RECV - STEP 3] FROM YIELDSENTINEL:
-Narration: Review Staking Allocation & Returns...
-CARD TYPE: >>> REVIEW <<<
-Card Title: Confirm Staking Allocation
-   Approve CTA: Authorize & Stake Position
--------------------------------------------------------------
-[USER ACTION] Confirming Allocation from Review Card...
-
--------------------------------------------------------------
-[RECV - STEP 4] FROM YIELDSENTINEL:
-Narration: Staking Position Successfully Allocated!
-• Vault: Fetch.ai Native Staking (ASI Network)
-• Principal Staked: 1,000.00 FET
-• Delegator Wallet: fetch1q89df34ka78m02kcl984
-• Transaction Hash: 0x8a92f01d...7b2c
-• Slashing & APY Guardian: ACTIVE (Continuous 24/7 Monitoring)
-• Protocol Protection Fee: 0.1 FET
-
-[SUCCESS] WORKFLOW COMPLETED SUCCESSFULLY! ALL 4 CARDS VALIDATED!
-```
+1. Open **[Agentverse.ai](https://agentverse.ai/)** and log in.
+2. Click **"+ New Agent"** ➔ Select **"Blank Agent"**.
+3. Open `campus_mitra/hosted_agent.py`, copy all contents, and paste into the Agentverse Web Editor.
+4. Click **"Run"** in the top right.
+5. Your agent is now live and public on the Fetch.ai network!
 
 ---
 
-## 🏆 Hackathon Deliverables Checklist
+## 💬 Sample Prompts to Test on ASI:One (`https://asi1.ai/`)
 
-- [x] **Agent Registered on Agentverse**: `agent1q2u2g04zqnfndm4ap4d4y9d9twfkqnnnvd85uhf0fxq9j2zcmhvmx96p90d`
-- [x] **Agent Chat Protocol (ACP)**: Full implementation with `ChatMessage`, `ChatAcknowledgement`, `TextContent`, and `MetadataContent`.
-- [x] **ASI:One Discoverable**: Published to Fetch.ai Almanac registry.
-- [x] **ASI:One Interactive Cards**: Complete 4-card sequence (Carousel, Detail, Form, Review).
-- [x] **Multi-Agent Orchestration**: Sentinel Orchestrator + DeFi Risk Analyst Worker.
-- [x] **Payment & Monetization**: 0.1 FET protection fee + auto-compounding revenue model.
-- [x] **Public GitHub Repository**: Clean codebase with test suite and setup instructions.
+Try asking CampusMitra AI directly on ASI:One:
+- *"Hi, I am a student here. What can you help me with?"* (Opens Main Menu Carousel)
+- *"What is on the menu for Monday in the boys hostel mess?"* (Opens Mess Detail Card)
+- *"Can you show me the canteen fast food menu, especially burgers and momos?"* (Opens Canteen Card)
+- *"Show me the 1st year CSE timetable for Monday"* (Opens Room B-001 Schedule)
+- *"What classes does 2nd year CSE have on Wednesday?"* (Opens Room C-202 Schedule)
+- *"What is the 4th year routine for Friday?"* (Opens Room D-202 Schedule)
+- *"Where is room C-202 located and which building is it in?"* (Opens Block C Floor Map)
+- *"Who is the HOD of Computer Science and where is his cabin?"* (Opens Dr. Lokesh Kumar's Profile)
+- *"What is the minimum attendance requirement to appear in semester exams?"* (Retrieves 75% rule via ChromaDB RAG)
 
 ---
 
-## 📄 License
-MIT License. Built for the **Fetch-A-Thon 3.0** by the YieldSentinel team.
+## 🛡️ License & Track Submission
+Built for the **Fetch.ai / ASI:One Agent Challenge (Fetch-A-Thon 3.0)** — *From Intent to Action*.
+Developed by **Tanishk Shukla** (Roorkee Institute of Technology).

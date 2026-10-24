@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusMitra AI - RIT Roorkee Campus Concierge</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- React 18 & Babel CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+    const API_BASE = window.location.origin;
+
+    function App() {
+      const [activeTab, setActiveTab] = useState("chat");
+      const [status, setStatus] = useState(null);
+
+      useEffect(() => {
+        fetch(`${API_BASE}/api/health`)
+          .then(res => res.json())
+          .then(data => setStatus(data))
+          .catch(err => console.error("Health check error:", err));
+      }, []);
+
+      return (
+        <div class="flex flex-col min-h-screen">
+          {/* Header */}
+          <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex justify-between items-center h-16">
+                {/* Brand */}
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+                    <i class="fa-solid fa-graduation-cap text-lg"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center space-x-2">
+                      <span class="font-extrabold text-xl tracking-tight text-slate-900">CampusMitra</span>
+                      <span class="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">RIT AI</span>
+                    </div>
+                    <p class="text-xs text-slate-500 hidden sm:block">Roorkee Institute of Technology · ASI:One Protocol</p>
+                  </div>
+                </div>
+
+                {/* Nav Tabs */}
+                <nav class="hidden md:flex space-x-1">
+                  {[
+                    { id: "chat", label: "AI Concierge", icon: "fa-comments" },
+                    { id: "timetables", label: "Timetables (1st-4th)", icon: "fa-calendar-days" },
+                    { id: "mess", label: "Hostel Mess", icon: "fa-utensils" },
+                    { id: "canteen", label: "Canteen Menu", icon: "fa-burger" },
+                    { id: "buildings", label: "Buildings & Maps", icon: "fa-building-columns" },
+                    { id: "faculty", label: "Faculty", icon: "fa-chalkboard-user" },
+                    { id: "rag", label: "Handbook RAG", icon: "fa-book-bookmark" },
+                  ].map(tab => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      class={`px-3 py-2 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition ${
+                        activeTab === tab.id
+                          ? "bg-blue-50 text-blue-700"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                      }`}
+                    >
+                      <i class={`fa-solid ${tab.icon}`}></i>
+                      <span>{tab.label}</span>
+                    </button>
+                  ))}
+                </nav>
+
+                {/* Status Badges */}
+                <div class="flex items-center space-x-2">
+                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+                    Agentverse Online
+                  </span>
+                  <span class="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                    <i class="fa-solid fa-database mr-1"></i>
+                    ChromaDB RAG
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Nav */}
+            <div class="flex md:hidden overflow-x-auto border-t border-slate-100 px-2 py-1 scrollbar-thin">
+              {[
+                { id: "chat", label: "Concierge", icon: "fa-comments" },
+                { id: "timetables", label: "Timetables", icon: "fa-calendar-days" },
+                { id: "mess", label: "Mess Food", icon: "fa-utensils" },
+                { id: "canteen", label: "Canteen", icon: "fa-burger" },
+                { id: "buildings", label: "Buildings", icon: "fa-building-columns" },
+                { id: "faculty", label: "Faculty", icon: "fa-chalkboard-user" },
+                { id: "rag", label: "Handbook", icon: "fa-book-bookmark" },
+              ].map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  class={`px-3 py-1.5 whitespace-nowrap rounded-md text-xs font-semibold flex items-center space-x-1.5 ${
+                    activeTab === tab.id ? "bg-blue-600 text-white" : "text-slate-600"
+                  }`}
+                >
+                  <i class={`fa-solid ${tab.icon}`}></i>
+                  <span>{tab.label}</span>
+                </button>
+              ))}
+            </div>
+          </header>
+
+          {/* Main Body */}
+          <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            {activeTab === "chat" && <ChatTab />}
+            {activeTab === "timetables" && <TimetablesTab />}
+            {activeTab === "mess" && <MessTab />}
+            {activeTab === "canteen" && <CanteenTab />}
+            {activeTab === "buildings" && <BuildingsTab />}
+            {activeTab === "faculty" && <FacultyTab />}
+            {activeTab === "rag" && <RAGTab />}
+          </main>
+
+          {/* Footer */}
+          <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+            CampusMitra AI (RIT Roorkee) · Fetch.ai / ASI:One Agent Challenge · From Intent to Action
+          </footer>
+        </div>
+      );
+    }
+
+    // ========================================================================
+    // TAB 1: AI CONCIERGE CHAT & ASI INTERACTIVE CARDS
+    // ========================================================================
+    function ChatTab() {
+      const [messages, setMessages] = useState([
+        {
+          sender: "ai",
+          text: "👋 **Namaste! Welcome to CampusMitra AI (RIT Roorkee).**\n\nI can help you with official class timetables, boys hostel mess meals, canteen orders, room navigation, and handbook rules!",
+          card_kind: "carousel",
+          card_payload: {
+            title: "CampusMitra AI: Services Directory",
+            subtitle: "Select an option below or type your query directly",
+            items: [
+              {
+                id: "menu_timetables",
+                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600",
+                title: "Class Timetables",
+                subtitle: "1st, 2nd, 3rd & 4th Year Schedules",
+                badges: [{"label": "All 4 Years", "variant": "success"}],
+                secondary_text: "Mon-Sat routines, venues (B-001, C-202, C-212, D-202)",
+                primary_cta: { label: "View Timetables", selection: { action: "menu_timetables" } }
+              },
+              {
+                id: "menu_mess",
+                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
+                title: "Boys Hostel Mess",
+                subtitle: "Breakfast, Lunch, Snacks & Dinner",
+                badges: [{"label": "All 7 Days", "variant": "warning"}],
+                secondary_text: "Aloo Paratha, Shahi Paneer, Chole Bhature, Kheer & Ice Cream",
+                primary_cta: { label: "View Mess Menu", selection: { action: "menu_mess" } }
+              },
+              {
+                id: "menu_canteen",
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
+                title: "Campus Canteen",
+                subtitle: "Burgers, Momos, Cold Drinks, Cold Coffee",
+                badges: [{"label": "Fast Food", "variant": "info"}],
+                secondary_text: "Burgers, Full Plate Momos, Cold Coffee, Tea & Maggi",
+                primary_cta: { label: "View Canteen Menu", selection: { action: "menu_canteen" } }
+              },
+              {
+                id: "menu_buildings",
+                image: "https://images.unsplash.com/photo-1562774053-701939374585?w=600",
+                title: "Campus Blocks",
+                subtitle: "Block B, Block C & Block D",
+                badges: [{"label": "3 Blocks", "variant": "success"}],
+                secondary_text: "Floor-by-floor breakdown of classrooms and labs",
+                primary_cta: { label: "Explore Buildings", selection: { action: "menu_buildings" } }
+              }
+            ]
+          }
+        }
+      ]);
+      const [input, setInput] = useState("");
+      const [loading, setLoading] = useState(false);
+      const [session, setSession] = useState({});
+      const messagesEndRef = useRef(null);
+
+      const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      };
+
+      useEffect(() => {
+        scrollToBottom();
+      }, [messages]);
+
+      const sendMessage = async (userText, payloadOverride = null) => {
+        const textToSend = payloadOverride ? JSON.stringify(payloadOverride) : userText;
+        if (!textToSend.trim()) return;
+
+        const displayMsg = payloadOverride 
+          ? `👉 [Card Action] ${payloadOverride.action || "Selection"}` 
+          : userText;
+
+        setMessages(prev => [...prev, { sender: "user", text: displayMsg }]);
+        if (!payloadOverride) setInput("");
+        setLoading(true);
+
+        try {
+          const res = await fetch(`${API_BASE}/api/chat`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: textToSend, session: session })
+          });
+          const data = await res.json();
+          setMessages(prev => [
+            ...prev,
+            {
+              sender: "ai",
+              text: data.text,
+              card_kind: data.card_kind,
+              card_payload: data.card_payload,
+              agent_used: data.agent_used
+            }
+          ]);
+          if (data.session_updates) setSession(prev => ({ ...prev, ...data.session_updates }));
+        } catch (err) {
+          setMessages(prev => [
+            ...prev,
+            { sender: "ai", text: "⚠️ Error connecting to CampusMitra AI backend. Please verify FastAPI is running." }
+          ]);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      return (
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[calc(100vh-140px)]">
+          {/* Main Chat Drawer */}
+          <div class="lg:col-span-3 flex flex-col bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            {/* Chat Messages */}
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 scrollbar-thin">
+              {messages.map((m, idx) => (
+                <div key={idx} class={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}>
+                  <div class={`max-w-2xl w-full ${m.sender === "user" ? "text-right" : "text-left"}`}>
+                    <div
+                      class={`inline-block px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+                        m.sender === "user"
+                          ? "bg-blue-600 text-white rounded-br-none shadow-sm"
+                          : "bg-slate-100 text-slate-800 rounded-bl-none"
+                      }`}
+                      style={{ whiteSpace: "pre-line" }}
+                    >
+                      {m.text}
+                    </div>
+
+                    {m.agent_used && (
+                      <div class="mt-1 text-[11px] text-slate-400 flex items-center space-x-1">
+                        <i class="fa-solid fa-robot"></i>
+                        <span>Processed by: {m.agent_used}</span>
+                      </div>
+                    )}
+
+                    {m.card_kind && m.card_payload && (
+                      <div class="mt-3 text-left">
+                        <CardRenderer
+                          kind={m.card_kind}
+                          payload={m.card_payload}
+                          onAction={(action) => sendMessage("", action)}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+              {loading && (
+                <div class="flex items-center space-x-2 text-slate-400 text-xs py-2">
+                  <div class="w-2 h-2 rounded-full bg-blue-500 animate-bounce"></div>
+                  <div class="w-2 h-2 rounded-full bg-blue-500 animate-bounce [animation-delay:0.2s]"></div>
+                  <div class="w-2 h-2 rounded-full bg-blue-500 animate-bounce [animation-delay:0.4s]"></div>
+                  <span>CampusMitra is thinking...</span>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Quick Suggestion Pills */}
+            <div class="px-4 py-2 border-t border-slate-100 bg-slate-50/70 overflow-x-auto flex space-x-2 scrollbar-thin">
+              {[
+                "🍲 Today's Mess Menu",
+                "🍔 Canteen Menu (Burgers, Momos, Cold Coffee)",
+                "📅 4th Year Friday Schedule",
+                "📅 3rd Year Wednesday Timetable",
+                "👨‍🏫 Dr. Lokesh Kumar (HOD CSE)",
+                "📖 75% Attendance & Condonation Rules",
+                "📍 Where is Room C-202?"
+              ].map((pill, i) => (
+                <button
+                  key={i}
+                  onClick={() => sendMessage(pill)}
+                  class="text-xs bg-white border border-slate-200 hover:border-blue-400 text-slate-700 px-3 py-1 rounded-full whitespace-nowrap transition shadow-2xs hover:text-blue-600"
+                >
+                  {pill}
+                </button>
+              ))}
+            </div>
+
+            {/* Input Bar */}
+            <div class="p-3 sm:p-4 bg-white border-t border-slate-200">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  sendMessage(input);
+                }}
+                class="flex space-x-2"
+              >
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Ask anything (e.g. 'Sunday breakfast in mess', 'burger price', '4th year timetable', 'where is C-212')..."
+                  class="flex-1 bg-slate-50 border border-slate-300 focus:border-blue-500 focus:bg-white text-slate-800 text-sm rounded-xl px-4 py-3 outline-none transition"
+                />
+                <button
+                  type="submit"
+                  disabled={loading || !input.trim()}
+                  class="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white px-5 rounded-xl text-sm font-semibold flex items-center justify-center transition shadow-md shadow-blue-500/20"
+                >
+                  <i class="fa-solid fa-paper-plane mr-2"></i>
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* Side Info Panel */}
+          <div class="hidden lg:flex flex-col space-y-4">
+            <div class="bg-gradient-to-br from-blue-700 to-indigo-800 rounded-2xl p-5 text-white shadow-md">
+              <div class="flex items-center space-x-2 text-blue-200 text-xs font-semibold uppercase tracking-wider mb-2">
+                <i class="fa-solid fa-microchip"></i>
+                <span>Multi-Agent Stack</span>
+              </div>
+              <h3 class="text-lg font-bold">RIT Campus Concierge</h3>
+              <p class="text-xs text-blue-100 mt-2 leading-relaxed">
+                LangGraph routing between specialized agents: TimetableAgent, MessCanteenAgent, NavigationAgent, FacultyAgent, and ChromaDB RAG.
+              </p>
+              <div class="mt-4 pt-3 border-t border-blue-500/40 text-xs space-y-1.5">
+                <div class="flex justify-between">
+                  <span class="text-blue-200">Protocol:</span>
+                  <span class="font-mono font-semibold">AgentChatProtocol:0.3.0</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-blue-200">Interactive Cards:</span>
+                  <span class="font-mono font-semibold">v1 (Carousel, Detail, Form)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-blue-200">uAgent Port:</span>
+                  <span class="font-mono font-semibold">8000 (Fetch.ai)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex-1">
+              <h4 class="font-bold text-sm text-slate-800 mb-3 flex items-center">
+                <i class="fa-solid fa-bolt text-amber-500 mr-2"></i>
+                Try These Queries
+              </h4>
+              <ul class="text-xs text-slate-600 space-y-2.5">
+                <li class="cursor-pointer hover:text-blue-600 flex items-start space-x-2" onClick={() => sendMessage("What is in Sunday breakfast mess?")}>
+                  <i class="fa-solid fa-arrow-right text-[10px] text-blue-500 mt-0.5"></i>
+                  <span>"What is in Sunday breakfast mess?"</span>
+                </li>
+                <li class="cursor-pointer hover:text-blue-600 flex items-start space-x-2" onClick={() => sendMessage("What is the price of full plate momos and burger?")}>
+                  <i class="fa-solid fa-arrow-right text-[10px] text-blue-500 mt-0.5"></i>
+                  <span>"Price of full plate momos and burger?"</span>
+                </li>
+                <li class="cursor-pointer hover:text-blue-600 flex items-start space-x-2" onClick={() => sendMessage("Show 4th year timetable for Friday")}>
+                  <i class="fa-solid fa-arrow-right text-[10px] text-blue-500 mt-0.5"></i>
+                  <span>"Show 4th year timetable for Friday"</span>
+                </li>
+                <li class="cursor-pointer hover:text-blue-600 flex items-start space-x-2" onClick={() => sendMessage("Where is room C-202 located?")}>
+                  <i class="fa-solid fa-arrow-right text-[10px] text-blue-500 mt-0.5"></i>
+                  <span>"Where is room C-202 located?"</span>
+                </li>
+                <li class="cursor-pointer hover:text-blue-600 flex items-start space-x-2" onClick={() => sendMessage("Where is Dr Lokesh Kumar HOD cabin?")}>
+                  <i class="fa-solid fa-arrow-right text-[10px] text-blue-500 mt-0.5"></i>
+                  <span>"Where is Dr Lokesh Kumar HOD cabin?"</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // ========================================================================
+    // ASI INTERACTIVE CARD RENDERER COMPONENT
+    // ========================================================================
+    function CardRenderer({ kind, payload, onAction }) {
+      if (!payload) return null;
+
+      if (kind === "carousel" && payload.items) {
+        return (
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 shadow-sm">
+            <div class="mb-3">
+              <h4 class="font-bold text-slate-900 text-sm">{payload.title}</h4>
+              {payload.subtitle && <p class="text-xs text-slate-500">{payload.subtitle}</p>}
+            </div>
+            <div class="flex space-x-3 overflow-x-auto pb-2 scrollbar-thin">
+              {payload.items.map((item, idx) => (
+                <div key={idx} class="min-w-[240px] max-w-[260px] bg-white border border-slate-200 rounded-xl overflow-hidden shadow-2xs flex flex-col">
+                  {item.image && (
+                    <img src={item.image} alt={item.title} class="w-full h-28 object-cover" />
+                  )}
+                  <div class="p-3 flex-1 flex flex-col justify-between">
+                    <div>
+                      <div class="flex flex-wrap gap-1 mb-1">
+                        {item.badges?.map((b, bi) => (
+                          <span key={bi} class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">
+                            {b.label}
+                          </span>
+                        ))}
+                      </div>
+                      <h5 class="font-bold text-slate-900 text-xs">{item.title}</h5>
+                      <p class="text-[11px] text-slate-500 mt-0.5 line-clamp-2">{item.secondary_text || item.subtitle}</p>
+                    </div>
+                    {item.primary_cta && (
+                      <button
+                        onClick={() => onAction(item.primary_cta.selection)}
+                        class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-1.5 rounded-lg transition"
+                      >
+                        {item.primary_cta.label}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      if (kind === "detail") {
+        return (
+          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm max-w-xl">
+            {payload.hero_image && (
+              <img src={payload.hero_image} alt={payload.title} class="w-full h-36 object-cover" />
+            )}
+            <div class="p-4 sm:p-5">
+              <h4 class="font-bold text-slate-900 text-base">{payload.title}</h4>
+              {payload.summary_rows && (
+                <div class="mt-3 divide-y divide-slate-100 text-xs">
+                  {payload.summary_rows.map((row, ri) => (
+                    <div key={ri} class="py-2 flex justify-between gap-3">
+                      <span class="font-semibold text-slate-500">{row.label}</span>
+                      <span class="text-slate-800 font-medium text-right">{row.value}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div class="mt-4 flex flex-wrap gap-2">
+                {payload.approve_cta && (
+                  <button
+                    onClick={() => onAction(payload.approve_cta.selection)}
+                    class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2 px-3 rounded-lg transition"
+                  >
+                    {payload.approve_cta.label}
+                  </button>
+                )}
+                {payload.reject_cta && (
+                  <button
+                    onClick={() => onAction(payload.reject_cta.selection)}
+                    class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold py-2 px-3 rounded-lg transition"
+                  >
+                    {payload.reject_cta.label}
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      return null;
+    }
+
+    // ========================================================================
+    // TAB 2: TIMETABLES (1ST - 4TH YEAR)
+    // ========================================================================
+    function TimetablesTab() {
+      const [year, setYear] = useState("1st_year");
+      const [day, setDay] = useState("Monday");
+      const [scheduleData, setScheduleData] = useState(null);
+      const [loading, setLoading] = useState(true);
+
+      const years = [
+        { id: "1st_year", label: "1st Year (CSE Sec A)", venue: "Block B, Room B-001" },
+        { id: "2nd_year", label: "2nd Year (CSE Sec IIA-A)", venue: "Block C, Room C-202" },
+        { id: "3rd_year", label: "3rd Year (CSE Sec IIIA-A)", venue: "Block C, Room C-212" },
+        { id: "4th_year", label: "4th Year (B.Tech Final Year)", venue: "Block D, Room D-202" }
+      ];
+
+      const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+      useEffect(() => {
+        setLoading(true);
+        fetch(`${API_BASE}/api/timetables/${year}/${day}`)
+          .then(res => res.json())
+          .then(data => {
+            setScheduleData(data);
+            setLoading(false);
+          })
+          .catch(err => {
+            console.error(err);
+            setLoading(false);
+          });
+      }, [year, day]);
+
+      return (
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-1">RIT Official Academic Timetables</h2>
+            <p class="text-xs text-slate-500">Live lecture schedules for 1st, 2nd, 3rd, and 4th year students with assigned lecture halls and professors.</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5">
+              {years.map(y => (
+                <button
+                  key={y.id}
+                  onClick={() => setYear(y.id)}
+                  class={`p-3 rounded-xl border text-left transition ${
+                    year === y.id
+                      ? "border-blue-600 bg-blue-50/70 shadow-xs"
+                      : "border-slate-200 hover:border-slate-300 bg-white"
+                  }`}
+                >
+                  <div class="font-bold text-xs text-slate-900">{y.label}</div>
+                  <div class="text-[11px] text-blue-600 mt-1 font-semibold flex items-center">
+                    <i class="fa-solid fa-location-dot text-[10px] mr-1"></i>
+                    {y.venue}
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            <div class="flex space-x-2 mt-4 overflow-x-auto pb-1">
+              {days.map(d => (
+                <button
+                  key={d}
+                  onClick={() => setDay(d)}
+                  class={`px-4 py-1.5 rounded-lg text-xs font-semibold transition ${
+                    day === d
+                      ? "bg-slate-900 text-white"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
+              <div>
+                <h3 class="font-bold text-sm text-slate-800">{scheduleData?.title} · {day}</h3>
+                <p class="text-xs text-slate-500">Assigned Venue: {scheduleData?.classroom}</p>
+              </div>
+              <span class="text-xs font-bold px-2.5 py-1 rounded bg-blue-100 text-blue-800">
+                {scheduleData?.schedule?.length || 0} Slots
+              </span>
+            </div>
+
+            {loading ? (
+              <div class="p-8 text-center text-xs text-slate-400">Loading schedule...</div>
+            ) : (
+              <div class="divide-y divide-slate-100">
+                {scheduleData?.schedule?.map((slot, idx) => (
+                  <div key={idx} class="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-slate-50/60 transition">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex flex-col items-center justify-center font-bold text-xs">
+                        <i class="fa-solid fa-clock text-sm mb-0.5"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-sm text-slate-900">{slot.subject}</h4>
+                        <div class="flex flex-wrap items-center gap-2 mt-1 text-xs text-slate-500">
+                          <span class="font-semibold text-slate-700">{slot.faculty}</span>
+                          <span>•</span>
+                          <span class="text-slate-500">{slot.time}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="sm:text-right">
+                      <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <i class="fa-solid fa-door-open mr-1.5"></i>
+                        Room: {slot.room}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    // ========================================================================
+    // TAB 3: HOSTEL MESS MENU (MON - SUN)
+    // ========================================================================
+    function MessTab() {
+      const [day, setDay] = useState("Monday");
+      const [messData, setMessData] = useState(null);
+      const [loading, setLoading] = useState(true);
+
+      const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+      useEffect(() => {
+        setLoading(true);
+        fetch(`${API_BASE}/api/mess?day=${day}`)
+          .then(res => res.json())
+          .then(data => {
+            setMessData(data);
+            setLoading(false);
+          });
+      }, [day]);
+
+      return (
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h2 class="text-xl font-bold text-slate-900">RIT Boys Hostel Mess Menu</h2>
+                <p class="text-xs text-slate-500">Official weekly food schedule prepared by Chief Warden & Food Manager.</p>
+              </div>
+              <div class="flex items-center space-x-2 text-xs font-medium bg-amber-50 text-amber-800 px-3 py-1.5 rounded-xl border border-amber-200">
+                <i class="fa-solid fa-check-double text-amber-600"></i>
+                <span>Fresh Desi Ghee on Chapatis Daily</span>
+              </div>
+            </div>
+
+            {/* Day Selector */}
+            <div class="flex space-x-2 mt-5 overflow-x-auto pb-1">
+              {days.map(d => (
+                <button
+                  key={d}
+                  onClick={() => setDay(d)}
+                  class={`px-4 py-2 rounded-xl text-xs font-semibold transition ${
+                    day === d
+                      ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 4 Meal Cards Grid */}
+          {loading ? (
+            <div class="p-8 text-center text-xs text-slate-400">Loading mess food...</div>
+          ) : (
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Breakfast */}
+              <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition">
+                <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <div class="flex items-center space-x-2 text-amber-700 font-bold text-sm">
+                    <span class="text-lg">🍳</span>
+                    <span>Breakfast</span>
+                  </div>
+                  <span class="text-xs font-semibold bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full">
+                    {messData?.timings?.breakfast}
+                  </span>
+                </div>
+                <p class="text-xs text-slate-800 mt-3 leading-relaxed font-medium">
+                  {messData?.meals?.breakfast}
+                </p>
+              </div>
+
+              {/* Lunch */}
+              <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition">
+                <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <div class="flex items-center space-x-2 text-emerald-700 font-bold text-sm">
+                    <span class="text-lg">🍛</span>
+                    <span>Lunch</span>
+                  </div>
+                  <span class="text-xs font-semibold bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full">
+                    {messData?.timings?.lunch}
+                  </span>
+                </div>
+                <p class="text-xs text-slate-800 mt-3 leading-relaxed font-medium">
+                  {messData?.meals?.lunch}
+                </p>
+              </div>
+
+              {/* Tea & Snacks */}
+              <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition">
+                <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <div class="flex items-center space-x-2 text-indigo-700 font-bold text-sm">
+                    <span class="text-lg">☕</span>
+                    <span>Evening Tea & Snacks</span>
+                  </div>
+                  <span class="text-xs font-semibold bg-indigo-100 text-indigo-800 px-2.5 py-0.5 rounded-full">
+                    {messData?.timings?.tea_snacks}
+                  </span>
+                </div>
+                <p class="text-xs text-slate-800 mt-3 leading-relaxed font-medium">
+                  {messData?.meals?.tea_snacks}
+                </p>
+              </div>
+
+              {/* Dinner */}
+              <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition">
+                <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <div class="flex items-center space-x-2 text-purple-700 font-bold text-sm">
+                    <span class="text-lg">🍲</span>
+                    <span>Dinner</span>
+                  </div>
+                  <span class="text-xs font-semibold bg-purple-100 text-purple-800 px-2.5 py-0.5 rounded-full">
+                    {messData?.timings?.dinner}
+                  </span>
+                </div>
+                <p class="text-xs text-slate-800 mt-3 leading-relaxed font-medium">
+                  {messData?.meals?.dinner}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Mess Notes */}
+          <div class="bg-slate-100 rounded-2xl p-5 border border-slate-200 text-xs text-slate-600 space-y-1.5">
+            <div class="font-bold text-slate-800 mb-2 flex items-center">
+              <i class="fa-solid fa-circle-info mr-2 text-blue-600"></i>
+              Important Mess Regulations
+            </div>
+            {messData?.notes?.map((n, i) => (
+              <p key={i}>• {n}</p>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // ========================================================================
+    // TAB 4: CAMPUS CANTEEN MENU
+    // ========================================================================
+    function CanteenTab() {
+      const [canteenData, setCanteenData] = useState(null);
+      const [activeCategory, setActiveCategory] = useState("Burgers");
+
+      useEffect(() => {
+        fetch(`${API_BASE}/api/canteen`)
+          .then(res => res.json())
+          .then(data => setCanteenData(data));
+      }, []);
+
+      const categories = canteenData ? Object.keys(canteenData) : [];
+
+      return (
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-1">Campus Canteen & Fast Food Counter</h2>
+            <p class="text-xs text-slate-500">Piping hot Burgers, Full Plate Momos, Chilled Cold Drinks, and Thick Cold Coffee.</p>
+
+            {/* Category Pills */}
+            <div class="flex space-x-2 mt-5 overflow-x-auto pb-1 scrollbar-thin">
+              {categories.map(cat => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  class={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition ${
+                    activeCategory === cat
+                      ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Menu Items Grid */}
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {canteenData?.[activeCategory]?.map((item, idx) => (
+              <div key={idx} class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                  <div class="flex justify-between items-start">
+                    <h4 class="font-bold text-sm text-slate-900">{item.name}</h4>
+                    <span class="text-xs font-extrabold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-lg">
+                      {item.price}
+                    </span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-2 leading-relaxed">{item.desc}</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                  <span>Available at Canteen Counter</span>
+                  <i class="fa-solid fa-check text-emerald-500"></i>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // ========================================================================
+    // TAB 5: CAMPUS BUILDINGS & FLOOR MAPS
+    // ========================================================================
+    function BuildingsTab() {
+      const [buildings, setBuildings] = useState([]);
+      const [selectedBldg, setSelectedBldg] = useState(null);
+      const [selectedFloor, setSelectedFloor] = useState(null);
+
+      useEffect(() => {
+        fetch(`${API_BASE}/api/buildings`)
+          .then(res => res.json())
+          .then(data => {
+            setBuildings(data);
+            if (data.length > 0) {
+              setSelectedBldg(data[0]);
+              const floors = Object.keys(data[0].floors);
+              setSelectedFloor(floors[0]);
+            }
+          });
+      }, []);
+
+      const handleSelectBuilding = (b) => {
+        setSelectedBldg(b);
+        const floors = Object.keys(b.floors);
+        setSelectedFloor(floors[0]);
+      };
+
+      return (
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-1">Campus Buildings & Infrastructure (RIT)</h2>
+            <p class="text-xs text-slate-500">Academic Block B, Block C, Block D, and Central Amenities.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+              {buildings.map(b => (
+                <div
+                  key={b.id}
+                  onClick={() => handleSelectBuilding(b)}
+                  class={`cursor-pointer rounded-2xl border overflow-hidden transition shadow-2xs ${
+                    selectedBldg?.id === b.id
+                      ? "border-blue-600 ring-2 ring-blue-500/20 shadow-md"
+                      : "border-slate-200 hover:border-slate-300 bg-white"
+                  }`}
+                >
+                  <img src={b.icon_url} alt={b.name} class="w-full h-32 object-cover" />
+                  <div class="p-3">
+                    <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">
+                      {b.code}
+                    </span>
+                    <h4 class="font-bold text-xs text-slate-900 mt-1">{b.name}</h4>
+                    <p class="text-[11px] text-slate-500 mt-1">{b.total_floors} Floors</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {selectedBldg && (
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+              <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-slate-200 gap-3">
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900">{selectedBldg.name}</h3>
+                  <p class="text-xs text-slate-500 mt-0.5">{selectedBldg.description}</p>
+                </div>
+                <div class="flex space-x-1.5 overflow-x-auto">
+                  {Object.keys(selectedBldg.floors).map(fl => (
+                    <button
+                      key={fl}
+                      onClick={() => setSelectedFloor(fl)}
+                      class={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition ${
+                        selectedFloor === fl
+                          ? "bg-blue-600 text-white"
+                          : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      }`}
+                    >
+                      {fl}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+                {selectedBldg.floors[selectedFloor]?.map((r, idx) => (
+                  <div key={idx} class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-blue-50/40 transition">
+                    <div class="flex justify-between items-start">
+                      <span class="font-mono font-bold text-sm text-blue-700 bg-blue-100 px-2 py-0.5 rounded">
+                        {r.room}
+                      </span>
+                      <span class="text-[10px] font-semibold text-slate-500 bg-slate-200 px-2 py-0.5 rounded-full">
+                        {r.type}
+                      </span>
+                    </div>
+                    <h5 class="font-bold text-xs text-slate-900 mt-2">{r.name}</h5>
+                    <p class="text-[11px] text-slate-500 mt-1">Capacity: {r.capacity} Seats</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // ========================================================================
+    // TAB 6: FACULTY DIRECTORY
+    // ========================================================================
+    function FacultyTab() {
+      const [faculty, setFaculty] = useState([]);
+      const [search, setSearch] = useState("");
+
+      useEffect(() => {
+        fetch(`${API_BASE}/api/faculty`)
+          .then(res => res.json())
+          .then(data => setFaculty(data));
+      }, []);
+
+      const filtered = faculty.filter(f =>
+        f.name.toLowerCase().includes(search.toLowerCase()) ||
+        f.department.toLowerCase().includes(search.toLowerCase()) ||
+        f.subjects.some(s => s.toLowerCase().includes(search.toLowerCase()))
+      );
+
+      return (
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h2 class="text-xl font-bold text-slate-900">RIT Faculty & Cabin Directory</h2>
+                <p class="text-xs text-slate-500">Contact professors, find cabins, and check office visiting hours.</p>
+              </div>
+              <input
+                type="text"
+                placeholder="Search faculty or subject..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                class="bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-xs text-slate-800 outline-none focus:border-blue-500 w-full sm:w-64"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filtered.map(f => (
+              <div key={f.id} class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center space-x-3 mb-3">
+                    <img src={f.avatar} alt={f.name} class="w-12 h-12 rounded-full object-cover border border-slate-200" />
+                    <div>
+                      <h4 class="font-bold text-sm text-slate-900">{f.name}</h4>
+                      <p class="text-xs text-blue-600 font-medium">{f.designation}</p>
+                      <p class="text-[11px] text-slate-500">{f.department}</p>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2 mt-4 text-xs border-t border-slate-100 pt-3">
+                    <div>
+                      <span class="text-slate-400 font-semibold block text-[10px] uppercase">Cabin Location:</span>
+                      <span class="font-semibold text-slate-800">{f.cabin}</span>
+                    </div>
+                    <div>
+                      <span class="text-slate-400 font-semibold block text-[10px] uppercase">Visiting Hours:</span>
+                      <span class="text-amber-700 bg-amber-50 px-2 py-0.5 rounded font-medium inline-block mt-0.5">{f.office_hours}</span>
+                    </div>
+                    <div>
+                      <span class="text-slate-400 font-semibold block text-[10px] uppercase">Subjects Taught:</span>
+                      <div class="flex flex-wrap gap-1 mt-1">
+                        {f.subjects.map((s, si) => (
+                          <span key={si} class="bg-slate-100 text-slate-700 text-[10px] px-2 py-0.5 rounded font-medium">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-slate-100 text-right">
+                  <a
+                    href={`mailto:${f.email}`}
+                    class="text-xs text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center"
+                  >
+                    <i class="fa-solid fa-envelope mr-1.5"></i>
+                    {f.email}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // ========================================================================
+    // TAB 7: HANDBOOK RAG VECTOR SEARCH
+    // ========================================================================
+    function RAGTab() {
+      const [query, setQuery] = useState("attendance 75 percent minimum rule");
+      const [results, setResults] = useState(null);
+      const [loading, setLoading] = useState(false);
+
+      const handleSearch = async (e) => {
+        e?.preventDefault();
+        if (!query.trim()) return;
+        setLoading(true);
+        try {
+          const res = await fetch(`${API_BASE}/api/rag/query`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query: query, top_k: 4 })
+          });
+          const data = await res.json();
+          setResults(data);
+        } catch (err) {
+          console.error(err);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      useEffect(() => {
+        handleSearch();
+      }, []);
+
+      return (
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 mb-1">RIT Handbook Vector RAG (ChromaDB)</h2>
+            <p class="text-xs text-slate-500 mb-4">Semantic retrieval powered by ChromaDB indexing the official PDF handbook.</p>
+
+            <form onSubmit={handleSearch} class="flex space-x-2">
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Ask about attendance, hostel mess food, canteen burgers, exams, fees..."
+                class="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-800 outline-none focus:border-blue-500"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                class="bg-blue-600 hover:bg-blue-700 text-white px-5 rounded-xl text-xs font-semibold"
+              >
+                {loading ? "Searching..." : "Vector Search"}
+              </button>
+            </form>
+          </div>
+
+          <div class="space-y-4">
+            {results?.hits?.map((hit, idx) => (
+              <div key={idx} class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-50 text-indigo-700">
+                    <i class="fa-solid fa-file-pdf mr-1"></i>
+                    {hit.source} · Page {hit.page}
+                  </span>
+                  <span class="text-[10px] font-mono text-slate-400">Score: {hit.score}</span>
+                </div>
+                <p class="text-xs text-slate-700 leading-relaxed font-normal whitespace-pre-line mt-2">
+                  {hit.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
