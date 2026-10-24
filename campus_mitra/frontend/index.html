@@ -47,7 +47,7 @@
     const API_BASE = window.location.origin;
 
     function App() {
-      const [activeTab, setActiveTab] = useState("chat");
+      const [activeTab, setActiveTab] = useState("showcase");
       const [status, setStatus] = useState(null);
 
       useEffect(() => {
@@ -64,7 +64,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div class="flex justify-between items-center h-16">
                 {/* Brand */}
-                <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab("showcase")}>
                   <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
                     <i class="fa-solid fa-graduation-cap text-lg"></i>
                   </div>
@@ -80,6 +80,7 @@
                 {/* Nav Tabs */}
                 <nav class="hidden md:flex space-x-1">
                   {[
+                    { id: "showcase", label: "Project Showcase & Video", icon: "fa-circle-play" },
                     { id: "chat", label: "AI Concierge", icon: "fa-comments" },
                     { id: "timetables", label: "Timetables (1st-4th)", icon: "fa-calendar-days" },
                     { id: "mess", label: "Hostel Mess", icon: "fa-utensils" },
@@ -93,7 +94,7 @@
                       onClick={() => setActiveTab(tab.id)}
                       class={`px-3 py-2 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition ${
                         activeTab === tab.id
-                          ? "bg-blue-50 text-blue-700"
+                          ? "bg-blue-50 text-blue-700 shadow-xs border border-blue-100"
                           : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
                       }`}
                     >
@@ -120,6 +121,7 @@
             {/* Mobile Nav */}
             <div class="flex md:hidden overflow-x-auto border-t border-slate-100 px-2 py-1 scrollbar-thin">
               {[
+                { id: "showcase", label: "Showcase", icon: "fa-circle-play" },
                 { id: "chat", label: "Concierge", icon: "fa-comments" },
                 { id: "timetables", label: "Timetables", icon: "fa-calendar-days" },
                 { id: "mess", label: "Mess Food", icon: "fa-utensils" },
@@ -144,6 +146,7 @@
 
           {/* Main Body */}
           <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            {activeTab === "showcase" && <ShowcaseTab setActiveTab={setActiveTab} />}
             {activeTab === "chat" && <ChatTab />}
             {activeTab === "timetables" && <TimetablesTab />}
             {activeTab === "mess" && <MessTab />}
@@ -1098,6 +1101,437 @@
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      );
+    }
+
+    // ========================================================================
+    // TAB 0: PROJECT SHOWCASE & VIDEO DEMO WALKTHROUGH
+    // ========================================================================
+    function ShowcaseTab({ setActiveTab }) {
+      return (
+        <div class="space-y-10">
+          {/* Hero Banner */}
+          <div class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-white rounded-3xl p-8 sm:p-10 shadow-xl border border-blue-900/40">
+            <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+              <i class="fa-solid fa-graduation-cap text-[280px]"></i>
+            </div>
+            
+            <div class="relative z-10 max-w-3xl space-y-4">
+              <div class="inline-flex items-center space-x-2 bg-blue-500/20 border border-blue-400/30 px-3 py-1 rounded-full text-xs font-semibold text-blue-200">
+                <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+                <span>Fetch-A-Thon 3.0 / ASI:One Agent Challenge</span>
+                <span class="text-blue-300">• From Intent to Action</span>
+              </div>
+
+              <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                CampusMitra AI
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300 text-2xl sm:text-4xl mt-1">
+                  Autonomous Indian Campus Concierge
+                </span>
+              </h1>
+
+              <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                An intelligent multi-agent AI assistant designed specifically for Indian engineering institutes 
+                <strong> (Roorkee Institute of Technology / RIT Edition)</strong>. Powered by Fetch.ai <strong>uAgents</strong>, 
+                <strong> Agent Chat Protocol (ACP:0.3.0)</strong>, and <strong>ASI:One Interactive Cards Protocol v1</strong>.
+              </p>
+
+              {/* Action Buttons */}
+              <div class="flex flex-wrap gap-3 pt-2">
+                <a
+                  href="https://asi1.ai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2 shadow-lg shadow-blue-600/30"
+                >
+                  <i class="fa-solid fa-bolt"></i>
+                  <span>Test Live on ASI:One</span>
+                </a>
+                <a
+                  href="https://agentverse.ai/agents/agent1qt6msz8tyzg629x2uhvjn025sd27erneyl4427fpgdxqq74ycryquewctvc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs px-4 py-3 rounded-xl transition flex items-center space-x-2 border border-white/20"
+                >
+                  <i class="fa-solid fa-cloud"></i>
+                  <span>Agentverse Profile</span>
+                </a>
+                <a
+                  href="https://github.com/tanishkshukla/fetchaihacathon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs px-4 py-3 rounded-xl transition flex items-center space-x-2 border border-white/20"
+                >
+                  <i class="fa-brands fa-github text-sm"></i>
+                  <span>GitHub Repository</span>
+                </a>
+                <button
+                  onClick={() => setActiveTab("chat")}
+                  class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-5 py-3 rounded-xl transition flex items-center space-x-2 shadow-md shadow-emerald-600/30"
+                >
+                  <i class="fa-solid fa-comments"></i>
+                  <span>Launch AI Concierge</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Metrics Ribbon */}
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-white/10">
+              <div>
+                <div class="text-2xl font-black text-white">4 Years</div>
+                <div class="text-xs text-slate-400">Class Timetables (Mon-Sat)</div>
+              </div>
+              <div>
+                <div class="text-2xl font-black text-emerald-400">7 Days</div>
+                <div class="text-xs text-slate-400">Hostel Mess (4 Meals/Day)</div>
+              </div>
+              <div>
+                <div class="text-2xl font-black text-amber-400">20+ Items</div>
+                <div class="text-xs text-slate-400">Canteen Fast Food Menu</div>
+              </div>
+              <div>
+                <div class="text-2xl font-black text-sky-400">19 Chunks</div>
+                <div class="text-xs text-slate-400">ChromaDB Handbook RAG</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 1: What is CampusMitra AI? (Problem & Solution) */}
+          <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-6">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">The Motivation</span>
+              <h2 class="text-2xl font-black text-slate-900 mt-1">What is CampusMitra AI & Why Was It Built?</h2>
+              <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                Indian college campuses are dynamic, fast-moving ecosystems. Students juggle changing lecture rooms across multi-story academic blocks, strict hostel mess hours, crowded canteen counters, and academic regulations buried in lengthy PDF handbooks.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/80">
+                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg mb-3">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h3 class="font-bold text-sm text-slate-900">The Problem</h3>
+                <ul class="text-xs text-slate-600 mt-2 space-y-2 list-disc list-inside">
+                  <li>Classroom routines change across Blocks B, C, and D without quick lookup.</li>
+                  <li>Mess food menus and sweet dish schedules are pinned only on physical notice boards.</li>
+                  <li>Exam eligibility (75% attendance policy) is lost in official PDFs.</li>
+                </ul>
+              </div>
+
+              <div class="bg-blue-50/60 rounded-2xl p-5 border border-blue-200/80">
+                <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-lg mb-3">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <h3 class="font-bold text-sm text-slate-900">The Solution</h3>
+                <ul class="text-xs text-slate-600 mt-2 space-y-2 list-disc list-inside">
+                  <li><strong>Fetch.ai Autonomous Agent</strong> operating 24/7 in the cloud.</li>
+                  <li><strong>ASI Interactive Cards</strong> (Carousels & Details) for zero-typing interaction.</li>
+                  <li>Instant class timetable, hostel mess, canteen, and room navigation routing.</li>
+                </ul>
+              </div>
+
+              <div class="bg-emerald-50/60 rounded-2xl p-5 border border-emerald-200/80">
+                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg mb-3">
+                  <i class="fa-solid fa-award"></i>
+                </div>
+                <h3 class="font-bold text-sm text-slate-900">The Impact</h3>
+                <ul class="text-xs text-slate-600 mt-2 space-y-2 list-disc list-inside">
+                  <li>Zero friction for 2,500+ students navigating engineering life.</li>
+                  <li>Real-time dining transparency (Breakfast, Lunch, Snacks, Dinner).</li>
+                  <li>Immediate semantic search over the college regulatory handbook via ChromaDB.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 2: How It Works — Multi-Agent Architecture */}
+          <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-6">
+            <div>
+              <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">System Pipeline</span>
+              <h2 class="text-2xl font-black text-slate-900 mt-1">How It Works: Technical Architecture</h2>
+              <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                CampusMitra AI combines Fetch.ai uAgents, an intelligent multi-agent orchestrator, persistent ChromaDB vector storage, and the ASI Interactive Cards Protocol.
+              </p>
+            </div>
+
+            {/* Architecture Steps Grid */}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl relative">
+                <span class="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">STEP 1</span>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Intent Ingestion</h4>
+                <p class="text-xs text-slate-500 mt-1">
+                  User sends natural language query or card action via ASI:One or REST API.
+                </p>
+              </div>
+
+              <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl relative">
+                <span class="text-xs font-mono font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">STEP 2</span>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">ACP 0.3.0 Protocol</h4>
+                <p class="text-xs text-slate-500 mt-1">
+                  Standardized <code>ChatMessage</code> & instant <code>ChatAcknowledgement</code> exchange.
+                </p>
+              </div>
+
+              <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl relative">
+                <span class="text-xs font-mono font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">STEP 3</span>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Multi-Agent Router</h4>
+                <p class="text-xs text-slate-500 mt-1">
+                  Dispatches to Timetable, Mess/Canteen, Navigation, Faculty, or RAG sub-agent.
+                </p>
+              </div>
+
+              <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl relative">
+                <span class="text-xs font-mono font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">STEP 4</span>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">ChromaDB RAG</h4>
+                <p class="text-xs text-slate-500 mt-1">
+                  Semantic embedding search over 19 chunks of college PDF regulations.
+                </p>
+              </div>
+
+              <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl relative">
+                <span class="text-xs font-mono font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">STEP 5</span>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">ASI Card Generation</h4>
+                <p class="text-xs text-slate-500 mt-1">
+                  Renders rich Carousel, Detail, and action buttons directly in the drawer UI.
+                </p>
+              </div>
+            </div>
+
+            {/* Sub-Agents Breakdown */}
+            <div class="border-t border-slate-100 pt-6">
+              <h3 class="text-sm font-bold text-slate-900 mb-3">Specialized Sub-Agents in Action:</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
+                <div class="p-3 rounded-xl bg-blue-50/50 border border-blue-100">
+                  <div class="font-bold text-xs text-blue-900">📅 TimetableAgent</div>
+                  <div class="text-[11px] text-slate-600 mt-1">Mon-Sat routines for 1st-4th year CSE in rooms B-001, C-202, C-212, D-202.</div>
+                </div>
+                <div class="p-3 rounded-xl bg-amber-50/50 border border-amber-100">
+                  <div class="font-bold text-xs text-amber-900">🍲 MessCanteenAgent</div>
+                  <div class="text-[11px] text-slate-600 mt-1">Daily 4-meal hostel dining + fast-food canteen items with student pricing.</div>
+                </div>
+                <div class="p-3 rounded-xl bg-emerald-50/50 border border-emerald-100">
+                  <div class="font-bold text-xs text-emerald-900">🏛️ NavigationAgent</div>
+                  <div class="text-[11px] text-slate-600 mt-1">Floor-by-floor classroom locator across Academic Blocks B, C, and D.</div>
+                </div>
+                <div class="p-3 rounded-xl bg-purple-50/50 border border-purple-100">
+                  <div class="font-bold text-xs text-purple-900">👨‍🏫 FacultyAgent</div>
+                  <div class="text-[11px] text-slate-600 mt-1">Professor cabins, designated subjects, and official office visiting hours.</div>
+                </div>
+                <div class="p-3 rounded-xl bg-rose-50/50 border border-rose-100">
+                  <div class="font-bold text-xs text-rose-900">📖 RAGAgent</div>
+                  <div class="text-[11px] text-slate-600 mt-1">ChromaDB semantic retrieval of 75% attendance policy and exam rules.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 3: Official Video Demo Script & Recording Walkthrough */}
+          <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white rounded-3xl p-8 sm:p-10 shadow-lg border border-blue-800 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span class="text-xs font-bold text-blue-300 uppercase tracking-wider">Video Submission Guide</span>
+                <h2 class="text-2xl font-black text-white mt-1">🎬 Hackathon Video Demo Script (3 Minutes)</h2>
+                <p class="text-xs sm:text-sm text-blue-200 mt-1">
+                  Follow this exact minute-by-minute walkthrough when recording your demo video for the judges!
+                </p>
+              </div>
+              <div class="flex items-center space-x-2 text-xs font-bold bg-white/10 px-3 py-1.5 rounded-full border border-white/20">
+                <i class="fa-solid fa-video text-rose-400 animate-pulse"></i>
+                <span>Ready to Record</span>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              {/* Scene 1 */}
+              <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+                <div class="flex justify-between items-center text-xs font-bold text-sky-300">
+                  <span>⏱️ 0:00 - 0:30 · Scene 1: Introduction & Problem Statement</span>
+                  <span class="bg-sky-500/20 px-2 py-0.5 rounded text-[11px]">Overview</span>
+                </div>
+                <p class="text-xs text-slate-200 mt-2 font-mono bg-black/20 p-2.5 rounded-lg">
+                  "Hello judges! Welcome to CampusMitra AI, our autonomous campus concierge built for the Fetch.ai / ASI:One challenge. Indian college students constantly face shifting class routines across multiple buildings, strict hostel mess timings, and complex academic regulations. CampusMitra transforms all of this into actionable AI agent interactions."
+                </p>
+                <div class="text-[11px] text-blue-200 mt-1.5">
+                  👉 <em>On Screen: Show this Project Showcase tab and the Agentverse Online badge.</em>
+                </div>
+              </div>
+
+              {/* Scene 2 */}
+              <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+                <div class="flex justify-between items-center text-xs font-bold text-emerald-300">
+                  <span>⏱️ 0:30 - 1:15 · Scene 2: Live ASI:One Chat & Interactive Cards</span>
+                  <span class="bg-emerald-500/20 px-2 py-0.5 rounded text-[11px]">Protocol Demo</span>
+                </div>
+                <p class="text-xs text-slate-200 mt-2 font-mono bg-black/20 p-2.5 rounded-lg">
+                  "Here is our agent running live on Agentverse. In ASI:One or our dashboard, typing 'Hi' immediately renders an interactive Carousel Card. Notice there is zero typing required—clicking any card triggers immediate protocol callbacks without human delay."
+                </p>
+                <div class="text-[11px] text-blue-200 mt-1.5">
+                  👉 <em>On Screen: Open the AI Concierge tab, type 'Hi', and click 'View Mess Menu'.</em>
+                </div>
+              </div>
+
+              {/* Scene 3 */}
+              <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+                <div class="flex justify-between items-center text-xs font-bold text-amber-300">
+                  <span>⏱️ 1:15 - 1:45 · Scene 3: Official Timetables & Room Navigation</span>
+                  <span class="bg-amber-500/20 px-2 py-0.5 rounded text-[11px]">Academics</span>
+                </div>
+                <p class="text-xs text-slate-200 mt-2 font-mono bg-black/20 p-2.5 rounded-lg">
+                  "When a student asks 'Show 2nd year CSE timetable for Wednesday', CampusMitra resolves the schedule for Block C, Room C-202, showing DSA with Dr. Himanshu Gupta and IBM corporate training. If they ask 'Where is Room C-202?', it shows the 2nd Floor layout and HOD chamber."
+                </p>
+                <div class="text-[11px] text-blue-200 mt-1.5">
+                  👉 <em>On Screen: Switch to Timetables Tab, then Buildings & Maps Tab.</em>
+                </div>
+              </div>
+
+              {/* Scene 4 */}
+              <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+                <div class="flex justify-between items-center text-xs font-bold text-purple-300">
+                  <span>⏱️ 1:45 - 2:15 · Scene 4: Boys Hostel Mess & Canteen Fast Food</span>
+                  <span class="bg-purple-500/20 px-2 py-0.5 rounded text-[11px]">Dining</span>
+                </div>
+                <p class="text-xs text-slate-200 mt-2 font-mono bg-black/20 p-2.5 rounded-lg">
+                  "For daily meals, students can check all 7 days of hostel food—breakfast, lunch, evening snacks, and dinner—plus Sunday special Chole Bhature and Kheer. The canteen menu allows students to check prices for burgers, full plate momos, and cold coffee."
+                </p>
+                <div class="text-[11px] text-blue-200 mt-1.5">
+                  👉 <em>On Screen: Show Hostel Mess Tab with 4 meal cards and Canteen Menu Tab.</em>
+                </div>
+              </div>
+
+              {/* Scene 5 */}
+              <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+                <div class="flex justify-between items-center text-xs font-bold text-rose-300">
+                  <span>⏱️ 2:15 - 2:45 · Scene 5: ChromaDB RAG Vector Handbook Search</span>
+                  <span class="bg-rose-500/20 px-2 py-0.5 rounded text-[11px]">Vector RAG</span>
+                </div>
+                <p class="text-xs text-slate-200 mt-2 font-mono bg-black/20 p-2.5 rounded-lg">
+                  "When asking about college rules—like 'What is the minimum attendance requirement?'—our ChromaDB RAG agent retrieves exact clauses from the official college handbook PDF, confirming the mandatory 75% attendance rule and medical condonation."
+                </p>
+                <div class="text-[11px] text-blue-200 mt-1.5">
+                  👉 <em>On Screen: Go to Handbook RAG Tab and click Vector Search.</em>
+                </div>
+              </div>
+
+              {/* Scene 6 */}
+              <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+                <div class="flex justify-between items-center text-xs font-bold text-teal-300">
+                  <span>⏱️ 2:45 - 3:00 · Scene 6: Architecture, GitHub & Conclusion</span>
+                  <span class="bg-teal-500/20 px-2 py-0.5 rounded text-[11px]">Wrap-up</span>
+                </div>
+                <p class="text-xs text-slate-200 mt-2 font-mono bg-black/20 p-2.5 rounded-lg">
+                  "CampusMitra AI is fully open source on GitHub, registered on Agentverse, and ready for deployment across Indian university campuses. Thank you!"
+                </p>
+                <div class="text-[11px] text-blue-200 mt-1.5">
+                  👉 <em>On Screen: Conclude with the GitHub repository page and Agentverse profile link.</em>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 4: Live Feature Explorer Grid */}
+          <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-6">
+            <div>
+              <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Quick Navigation</span>
+              <h2 class="text-2xl font-black text-slate-900 mt-1">Explore Every Feature of CampusMitra</h2>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                Click any of the modules below to jump directly into the live interactive explorer.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <button
+                onClick={() => setActiveTab("chat")}
+                class="p-5 rounded-2xl border border-blue-200 bg-blue-50/50 hover:bg-blue-50 hover:shadow-md text-left transition group"
+              >
+                <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-110 transition">
+                  <i class="fa-solid fa-comments"></i>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900">AI Concierge & Cards</h4>
+                <p class="text-xs text-slate-500 mt-1">Chat live with ACP cards protocol and interactive buttons.</p>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("timetables")}
+                class="p-5 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 hover:shadow-md text-left transition group"
+              >
+                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-110 transition">
+                  <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900">Timetables (1st-4th)</h4>
+                <p class="text-xs text-slate-500 mt-1">Official routines for rooms B-001, C-202, C-212, D-202.</p>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("mess")}
+                class="p-5 rounded-2xl border border-amber-200 bg-amber-50/50 hover:bg-amber-50 hover:shadow-md text-left transition group"
+              >
+                <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-110 transition">
+                  <i class="fa-solid fa-utensils"></i>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900">Boys Hostel Mess</h4>
+                <p class="text-xs text-slate-500 mt-1">7-day menu with breakfast, lunch, snacks, and sweet dishes.</p>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("canteen")}
+                class="p-5 rounded-2xl border border-rose-200 bg-rose-50/50 hover:bg-rose-50 hover:shadow-md text-left transition group"
+              >
+                <div class="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-110 transition">
+                  <i class="fa-solid fa-burger"></i>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900">Canteen Menu</h4>
+                <p class="text-xs text-slate-500 mt-1">Burgers, 8-pc Momos, Cold Coffee, Chai, and Fries.</p>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("buildings")}
+                class="p-5 rounded-2xl border border-indigo-200 bg-indigo-50/50 hover:bg-indigo-50 hover:shadow-md text-left transition group"
+              >
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-110 transition">
+                  <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900">Buildings & Classrooms</h4>
+                <p class="text-xs text-slate-500 mt-1">Floor maps for Academic Block B, Block C, Block D.</p>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("faculty")}
+                class="p-5 rounded-2xl border border-purple-200 bg-purple-50/50 hover:bg-purple-50 hover:shadow-md text-left transition group"
+              >
+                <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-110 transition">
+                  <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900">Faculty Directory</h4>
+                <p class="text-xs text-slate-500 mt-1">HOD Dr. Lokesh Kumar, Dr. Atma Rai, cabins & visiting hours.</p>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("rag")}
+                class="p-5 rounded-2xl border border-emerald-200 bg-emerald-50/50 hover:bg-emerald-50 hover:shadow-md text-left transition group"
+              >
+                <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-110 transition">
+                  <i class="fa-solid fa-book-bookmark"></i>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900">Handbook RAG</h4>
+                <p class="text-xs text-slate-500 mt-1">ChromaDB semantic search on 75% attendance policy & exams.</p>
+              </button>
+
+              <a
+                href="https://github.com/tanishkshukla/fetchaihacathon"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-5 rounded-2xl border border-slate-300 bg-slate-900 hover:bg-slate-800 text-white hover:shadow-md text-left transition group"
+              >
+                <div class="w-10 h-10 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-110 transition">
+                  <i class="fa-brands fa-github"></i>
+                </div>
+                <h4 class="font-bold text-sm text-white">Source Code</h4>
+                <p class="text-xs text-slate-300 mt-1">Star and view full repository on GitHub.</p>
+              </a>
+            </div>
           </div>
         </div>
       );
